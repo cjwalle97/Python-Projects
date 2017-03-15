@@ -4,9 +4,10 @@
 class Node(object):
     '''a node'''
 
-    def __init__(self, value, identifier):
+    def __init__(self, value, identifier, parent):
         self.__value = value
         self.__identifier = identifier
+        self.__parent = parent
 
     @property
     def value(self):
@@ -21,6 +22,11 @@ class Node(object):
     def print_info(self):
         '''get info'''
         print "ID:", self.__identifier, "Value:", self.__value
+
+    @property
+    def parent(parent):
+        '''Parent of the node'''
+        
 
 
 class Graph(object):
@@ -40,7 +46,7 @@ class Graph(object):
         nodekey = str(node[0]) + ',' + str(node[1])
         if nodekey in self._nodes:
             return self._nodes[nodekey]
-            
+
 
 def get_neighbors(node, graph):
     '''get neighbors for a node'''
