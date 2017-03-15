@@ -40,7 +40,7 @@ class Graph(object):
         nodekey = str(node[0]) + ',' + str(node[1])
         if nodekey in self._nodes:
             return self._nodes[nodekey]
-
+            
 
 def get_neighbors(node, graph):
     '''get neighbors for a node'''
