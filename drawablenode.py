@@ -19,7 +19,7 @@ class DrawableNode(object):
         self._f = 0
 
         # drawing vars
-        SIZE = 50
+        SIZE = 75
         self.width = SIZE
         self.height = SIZE
         self.id = id
