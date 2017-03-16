@@ -4,10 +4,10 @@
 class Node(object):
     '''a node'''
 
-    def __init__(self, value, identifier, parent):
+    def __init__(self, value, identifier):
         self.__value = value
         self.__identifier = identifier
-        self.__parent = parent
+        #self.__parent = parent
 
     @property
     def value(self):
@@ -23,10 +23,10 @@ class Node(object):
         '''get info'''
         print "ID:", self.__identifier, "Value:", self.__value
 
-    @property
-    def parent(parent):
-        '''Parent of the node'''
-        
+    #@property
+    #def parent(self):
+     #   '''Parent of the node'''
+      #  return self.__parent
 
 
 class Graph(object):
