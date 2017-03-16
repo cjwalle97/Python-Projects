@@ -5,6 +5,7 @@ from graph import Graph
 from graph import Node
 import drawablenode
 from drawablenode import *
+import AStar
 # Initialize the game engine
 pygame.init()
 

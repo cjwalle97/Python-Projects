@@ -27,6 +27,17 @@ CDrawn = DrawableNode(C)
 
 DDrawn = DrawableNode(D)
 
-
-
 pygame.init()
+
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+BLUE = (0, 0, 255)
+GREEN = (0, 255, 0)
+RED = (255, 0, 0)
+PAD = (5, 5)
+ROWS = 25
+COLS = 25
+WIDTH = 30
+HEIGHT = 30
+SCREEN_WIDTH = COLS * (PAD[0] + WIDTH) + PAD[1]
+SCREEN_HEIGHT = ROWS * (PAD[0] + HEIGHT) + PAD[1]
