@@ -4,27 +4,25 @@ from graph import Graph
 import math
 import pygame
 
-Grid = Graph(2)
 
-A = Grid.get_node(Node(0, 0))
 
-B = Grid.get_node(Node(1, 0))
+A = Node(0, 0)
 
-C = Grid.get_node(Node(2, 0))
+B = Node(1, 0)
 
-D = Grid.get_node(Node(0, 1))
+C = Node(2, 0)
+
+D = Node(0, 1)
 
 A.parent = None
 B.parent = A
 C.parent = B
 D.parent = A
 
-ADrawn = DrawableNode(A)
+NodeList = list(Node)
 
-BDrawn = DrawableNode(B)
-
-CDrawn = DrawableNode(C)
-
-DDrawn = DrawableNode(D)
-
-ADrawn.color(255, 255, 255)
+NodeList.insert(0, A)
+NodeList.insert(1, B)
+NodeList.insert(2, B)
+NodeList.insert(3, C)
+NodeList.insert(4, D)
