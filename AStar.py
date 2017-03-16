@@ -1,6 +1,8 @@
+from drawablenode import DrawableNode
 from graph import Node
 from graph import Graph
 import math
+import pygame
 
 Grid = Graph(2)
 
@@ -17,3 +19,14 @@ B.parent = A
 C.parent = B
 D.parent = A
 
+ADrawn = DrawableNode(A)
+
+BDrawn = DrawableNode(B)
+
+CDrawn = DrawableNode(C)
+
+DDrawn = DrawableNode(D)
+
+
+
+pygame.init()
