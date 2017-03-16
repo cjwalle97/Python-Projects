@@ -2,18 +2,18 @@ from graph import Node
 from graph import Graph
 import math
 
-A = Node(0, 0)
+Grid = Graph(2)
 
-B = Node(1, 0)
+A = Grid.get_node(Node(0, 0))
 
-C = Node(2, 0)
+B = Grid.get_node(Node(1, 0))
 
-D = Node(0, 1)
+C = Grid.get_node(Node(2, 0))
+
+D = Grid.get_node(Node(0, 1))
 
 A.parent = None
 B.parent = A
 C.parent = B
 D.parent = A
-
-Grid = Graph(2)
 

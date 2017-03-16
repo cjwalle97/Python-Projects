@@ -23,11 +23,6 @@ class Node(object):
         '''get info'''
         print "ID:", self.__identifier, "Value:", self.__value
 
-    #@property
-    #def parent(self):
-     #   '''Parent of the node'''
-      #  return self.__parent
-
 
 class Graph(object):
     '''the graph'''
