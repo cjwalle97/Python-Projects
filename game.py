@@ -5,7 +5,7 @@ from graph import Graph
 from graph import Node
 import drawablenode
 from drawablenode import *
-import AStar
+#import AStar
 
 # Initialize the game engine
 pygame.init()
@@ -17,8 +17,8 @@ BLUE = (0, 0, 255)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 PAD = (5, 5)
-ROWS = 2  #25
-COLS = 3  #25
+ROWS = 25
+COLS = 25
 WIDTH = 30
 HEIGHT = 30
 SCREEN_WIDTH = COLS * (PAD[0] + WIDTH) + PAD[1]
