@@ -23,3 +23,13 @@ d.parent = c
 
 e.parent = a
 
+def retrace(start, destination):
+    path = []
+    current = start
+    while current != destination:
+        path.append(current)
+        current = current.parent
+        if current == destination:
+            path.append(destination)
+    return path
+
