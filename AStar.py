@@ -4,6 +4,7 @@ from graph import Node
 import math
 import pygame
 
+pygame.init
 
 A = Node(0, 0)
 
@@ -26,3 +27,6 @@ NodeList.insert(2, B)
 NodeList.insert(3, C)
 NodeList.insert(4, D)
 
+pygame.draw
+
+pygame.QUIT
