@@ -1,33 +1,33 @@
 class Node(object):
-    def __init__(self, x, y, name):
+    def __init__(self, name, x, y):
         self.name = name
         self.parent = None
 
-a = Node(0, 0, 'a')
+a = Node('a', 0, 0)
 
-b = Node(1, 0, 'b')
+b = Node('b', 1, 0)
 
-c = Node(2, 0, 'c')
+c = Node('c', 2, 0)
 
-d = Node(3, 0, 'd')
+d = Node('d', 3, 0)
 
-e = Node(0, 1, 'e')
+e = Node('e', 0, 1)
 
-f = Node(0, 2, 'f')
+f = Node('f', 0, 2)
 
-g = Node(0, 3, 'g')
+g = Node('g', 0, 3)
 
-h = Node(-1, 0, 'h')
+h = Node('h', -1, 0)
 
-i = Node(-2, 0, 'i')
+i = Node('i', -2, 0)
 
-j = Node(-3, 0, 'j')
+j = Node('j', -3, 0)
 
-k = Node(0, -1, 'k')
+k = Node('k', 0, -1)
 
-l = Node(0, -2, 'l')
+l = Node('l', 0, -2)
 
-m = Node(0, -3, 'm')
+m = Node('m', 0, -3)
 
 a.parent = None
 
