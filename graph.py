@@ -7,7 +7,6 @@ class Node(object):
     def __init__(self, value, identifier):
         self.__value = value
         self.__identifier = identifier
-        #self.__parent = parent
 
     @property
     def value(self):
