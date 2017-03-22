@@ -11,4 +11,7 @@ def astar(start, destination):
     target = None
     current = start
     
+    previous = current
+    current = target
+    current.parent = previous
 
