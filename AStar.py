@@ -3,7 +3,7 @@ class Node(object):
         self.name = name
         self.x = x
         self.y = y
-        self.parent = List(parents)
+        self.parent = None
 
 a = Node('a', 0, 0)
 
@@ -57,9 +57,10 @@ l.parent = k
 
 m.parent = l
 
-def neighborcheck(node):
-    '''checks all sides of a Node in order to determine if there is another Node nearby. Nearby nodes become Parents'''
-    rightcheck =    Node('right', node.x + 1, node.y)
+def surroundings(node):
+    '''checks all sides of a Node in order to determine if there is another Node nearby. Nearby nodes become children'''
+    children = []
+    right = Node('right', node.x + 1, node.y)
     bottomright = Node('botright', node.x + 1, node.y - 1)
     bottom = Node('bottom', node.x, node.y - 1)
     bottomleft = Node('botleft', node.x - 1, node.y - 1)
@@ -67,7 +68,15 @@ def neighborcheck(node):
     topleft = Node('topleft', node.x - 1, node.y + 1)
     top = Node('top', node.x, node + 1)
     topright = Node('topright', node.x + 1, node.y + 1)
-    if 
+    children.append(right)
+    children.append(bottomright)
+    children.append(bottom)
+    children.append(bottomleft)
+    children.append(left)
+    children.append(topleft)
+    children.append(top)
+    children.append(topright)
+    return children
 
 def retrace(start, destination):
     path = []
