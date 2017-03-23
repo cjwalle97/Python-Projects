@@ -8,6 +8,9 @@ class Node(object):
         self.__value = value
         self.__identifier = identifier
         self.parent = None
+        self.gcost = None
+        self.fcost = None
+        self.gcost = None
 
     @property
     def value(self):

@@ -5,18 +5,20 @@ from drawablenode import DrawableNode
 
 Grid = Graph(5)
 
-def findf(node):
-    lowest = None
-    get_neighbors(node, Grid)
-    return lowest
-
 def astar(start, destination):
     Children = []
     previous = None
     target = None
     current = start
-    
-     '''previous = current
+    while current != start:
+        neighbors = get_neighbors(current, Grid)
+        for i in neighbors:
+            if top or left or bottom or right:
+                neighbors.i.f = 10
+            if top_right or top_left or bottom_left or bottom_right:
+                neighbors.i.f = 14
+                
+        '''previous = current
         current = target
         current.parent = previous'''
 
