@@ -10,15 +10,13 @@ def astar(start, destination):
     previous = None
     target = None
     current = start
-    while current != start:
+    while current != destination:
         neighbors = get_neighbors(current, Grid)
         for i in neighbors:
             if top or left or bottom or right:
-                neighbors.i.f = 10
+                '''Should make the value of G = 10'''
             if top_right or top_left or bottom_left or bottom_right:
-                neighbors.i.f = 14
-                
+                '''Should make the value of G = 14'''
         '''previous = current
         current = target
         current.parent = previous'''
-
