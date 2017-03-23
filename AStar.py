@@ -5,6 +5,16 @@ from drawablenode import DrawableNode
 
 Grid = Graph(5)
 
+def retrace(start, destination):
+    path = []
+    current = start
+    while current != destination:
+        path.append(current)
+        current = current.parent
+        if current == destination:
+            path.append(destination)
+    return path
+
 def astar(start, destination):
     Children = []
     previous = None
@@ -13,10 +23,17 @@ def astar(start, destination):
     while current != destination:
         neighbors = get_neighbors(current, Grid)
         for i in neighbors:
-            if top or left or bottom or right:
+            if 
                 '''Should make the value of G = 10'''
-            if top_right or top_left or bottom_left or bottom_right:
+            if 
                 '''Should make the value of G = 14'''
-        '''previous = current
-        current = target
-        current.parent = previous'''
+
+            '''finds the value of H'''
+
+            '''Adds G and H to make F then finds the lowest F cost'''
+                
+                '''Moves Current to the node with the lowest F cost'''
+                previous = current
+                current = target
+                current.parent = previous
+        
