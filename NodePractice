@@ -36,9 +36,27 @@ def printpath(path):
     for i in path:
         print 'Node: ', i.name
 
-def get_neighbors(start, destination):
-    neighbors = []
-    
+def get_neighbors(current, destination):
+    lowest = 1000
+    right = Node('right', current.x + 1, current.y)
+    top_right = Node('top_right', current.x + 1, current.y + 1)
+    top = Node('top', current.x, current.y + 1)
+    top_left = Node('top_left', current.x - 1, current.y + 1)
+    left = Node('left', current.x - 1, current.y)
+    bottom_left = Node('bottom_left', current.x - 1, current.y - 1)
+    bottom = Node('bottom', current.x, current.y - 1)
+    bottom_right = Node('bottom_right', current.x + 1, current.y - 1)
+    neighbors = [right, top_right, top, top_left, left, bottom_left, bottom, bottom_right]
+    for i in neighbors:
+        currenttemp = (i.x - current.x) + (i.y - current.y)
+        if currenttemp == 1 or -1:
+            i.g = 10
+        else:
+            i.g = 14
+        desttemp = (destination.x - i.x) + (destination.y - current.y)
+        i.h = desttemp
+        i.f = i.g + i.h
+        if i.f < lowest:
+            lowest = i.f
+    return lowest
 
-
-printpath(retrace())
