@@ -31,6 +31,15 @@ def printpath(path):
         print 'Node: ', i.name
 
 def get_neighbors(current, nodes):
+    '''get the neighbors    nodes the list of nodes to check    current the node to check nodes with'''
+    # directions
+    '''put those in a list'''
+    '''loop over that list'''
+    '''make a tuple that represents the node as a direction'''
+    # example bob = Node("bob", 1, 2)
+    #(1,2) != bob
+    #(1,2) == (bob.x, bob.y)
+    #if we get an equality then add the actual node to the neighbors list
     right = (current.x + 1, current.y)
     top_right = (current.x + 1, current.y + 1)
     top = (current.x, current.y + 1)
@@ -41,10 +50,12 @@ def get_neighbors(current, nodes):
     bottom_right = (current.x + 1, current.y - 1)
     directions = [right, top_right, top, top_left, left, bottom_left, bottom, bottom_right]
     neighbors = []
-    for i in nodes:    
+    i = 0
+    for i in nodes:
         node = (i.x, i.y)
         if node in directions:
             neighbors.append(i)
+    return neighbors
 
 def main():
     '''main'''
@@ -55,17 +66,26 @@ def main():
     e = Node('e', 2, 0)
     nodes = [a, b, c, d, e]
     neighbors = get_neighbors(a, nodes)
-    test0 = [b, c, d] #tests to see if equality
-    tests = [test0]
-    i = 0
-    for test in tests:
-        if neighbors == test:
-            success = True
-            print 'pass', "test ", i
-        else:
-            success = Falseprint 'fail', "test ", i
-        i = i + 1
+    test0 = [b, c, d]  # tests to see if equality
+    testing = True
+    if testing:
+        # test a
+        tests = [test0]
+        i = 0
+        for test in tests:
+            if neighbors == test:
+                success = True
+                print 'pass', "test ", i
+            else:
+                success = False
+                print 'fail', "test ", i
+            i = i + 1
 
-    if __name__ == '__main__':
+    a.neighbors = neighbors
+    for i in a.neighbors:
+        print i
 
-        main()
+
+if __name__ == '__main__':
+
+    main()
