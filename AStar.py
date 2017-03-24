@@ -57,6 +57,11 @@ def get_neighbors(current, nodes):
             neighbors.append(i)
     return neighbors
 
+def findlowestf(neighbors):
+    '''calculate the f_cost of all neighbors'''
+    ''''''
+    '''return the lowest number amoung them'''
+
 def main():
     '''main'''
     a = Node('a', 0, 0)
