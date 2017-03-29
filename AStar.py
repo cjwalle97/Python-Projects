@@ -5,9 +5,9 @@ class Node(object):
         self.x = x
         self.y = y
         self.parent = None
-        self.f = None
         self.g = None
         self.h = None
+        self.f = None
 
     def __str__(self):
         '''overload string for print'''
@@ -50,17 +50,46 @@ def get_neighbors(current, nodes):
     bottom_right = (current.x + 1, current.y - 1)
     directions = [right, top_right, top, top_left, left, bottom_left, bottom, bottom_right]
     neighbors = []
-    i = 0
     for i in nodes:
         node = (i.x, i.y)
         if node in directions:
             neighbors.append(i)
     return neighbors
 
-def findlowestf(neighbors):
-    '''calculate the f_cost of all neighbors'''
-    ''''''
-    '''return the lowest number amoung them'''
+def findg(node, neighbors):
+    gcosts = []
+    for i in neighbors:
+        xdifference = i.x - node.x
+        ydifference = i.y - node.y
+        totaldifference = xdifference + ydifference
+        if totaldifference == 1 or totaldifference == -1:
+            i.g = 10
+            gcosts.append(i.g)
+        else:
+            i.g = 14
+            gcosts.append(i.g)
+    return gcosts
+
+def findh(neighbors, destination):
+    hcosts = []
+    for i in neighbors:
+        xleft = destination.x - i.x
+        if xleft < 1:
+            xleft = xleft * -1
+        yleft = destination.y - i.y
+        if yleft < 1:
+            yleft = yleft * -1
+        totalleft = xleft + yleft
+        i.h = totalleft * 10
+        hcosts.append(i.h)
+    return hcosts
+
+def findf(neighbors):
+    fcosts = []
+    for i in neighbors:
+        i.f = i.g + i.h
+        fcosts.append(i.f)
+    return fcosts
 
 def main():
     '''main'''
@@ -72,6 +101,7 @@ def main():
     nodes = [a, b, c, d, e]
     neighbors = get_neighbors(a, nodes)
     test0 = [b, c, d]  # tests to see if equality
+    
     testing = True
     if testing:
         # test a
@@ -90,6 +120,17 @@ def main():
     for i in a.neighbors:
         print i
 
+    gtest = findg(a,neighbors) #tests to see if the findg function works
+    for i in gtest:
+        print i
+
+    htest = findh(neighbors, e) #tests to see if the findh function works
+    for i in htest:
+        print i 
+
+    ftest = findf(neighbors) #tests to see if the findf function works
+    for i in ftest:
+        print i
 
 if __name__ == '__main__':
 
