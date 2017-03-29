@@ -91,6 +91,16 @@ def findf(neighbors):
         fcosts.append(i.f)
     return fcosts
 
+def findlowest(neighbors):
+    lowest = neighbors[0]
+    for i in neighbors:
+        if i.f < lowest.f:
+            lowest = i
+    return lowest
+
+def astar(start, destination):
+    
+
 def main():
     '''main'''
     a = Node('a', 0, 0)
@@ -131,6 +141,9 @@ def main():
     ftest = findf(neighbors) #tests to see if the findf function works
     for i in ftest:
         print i
+    
+    ftest2 = findlowestf(neighbors) #tests to see if the findlowestf function works
+    print ftest2
 
 if __name__ == '__main__':
 
