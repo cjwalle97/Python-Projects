@@ -56,7 +56,7 @@ def get_neighbors(current, nodes):
             neighbors.append(i)
     return neighbors
 
-def findg(node, neighbors):
+def find_g(node, neighbors):
     gcosts = []
     for i in neighbors:
         xdifference = i.x - node.x
@@ -70,7 +70,7 @@ def findg(node, neighbors):
             gcosts.append(i.g)
     return gcosts
 
-def findh(neighbors, destination):
+def find_h(neighbors, destination):
     hcosts = []
     for i in neighbors:
         xleft = destination.x - i.x
@@ -84,22 +84,37 @@ def findh(neighbors, destination):
         hcosts.append(i.h)
     return hcosts
 
-def findf(neighbors):
+def find_f(neighbors):
     fcosts = []
     for i in neighbors:
         i.f = i.g + i.h
         fcosts.append(i.f)
     return fcosts
 
-def findlowest(neighbors):
+def find_lowest(neighbors):
     lowest = neighbors[0]
     for i in neighbors:
         if i.f < lowest.f:
             lowest = i
     return lowest
 
-def astar(start, destination):
-    
+def astar(nodes, start, destination):
+    path = []
+    current = start
+    while current != destination:
+        path.append(current)
+        neighbors = get_neighbors(current, nodes)
+        find_g(current, neighbors)
+        find_h(neighbors, destination)
+        find_f(neighbors)
+        next_node = find_lowest(neighbors)
+        previous = current
+        current = next_node
+        current.parent = previous
+    if current == destination:
+        path.append(destination)
+        return path
+
 
 def main():
     '''main'''
@@ -130,20 +145,24 @@ def main():
     for i in a.neighbors:
         print i
 
-    gtest = findg(a,neighbors) #tests to see if the findg function works
+    gtest = find_g(a,neighbors) #tests to see if the findg function works
     for i in gtest:
         print i
 
-    htest = findh(neighbors, e) #tests to see if the findh function works
+    htest = find_h(neighbors, e) #tests to see if the findh function works
     for i in htest:
         print i 
 
-    ftest = findf(neighbors) #tests to see if the findf function works
+    ftest = find_f(neighbors) #tests to see if the findf function works
     for i in ftest:
         print i
     
-    ftest2 = findlowestf(neighbors) #tests to see if the findlowestf function works
-    print ftest2
+    lowtest = find_lowest(neighbors) #tests to see if the findlowestf function works
+    print lowtest
+
+    astartest = astar(nodes, a, e) #tests to see if the astar function works
+    for i in astartest:
+        print i
 
 if __name__ == '__main__':
 
