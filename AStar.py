@@ -5,6 +5,9 @@ class Node(object):
         self.x = x
         self.y = y
         self.parent = None
+        self.g = None
+        self.h = None
+        self.f = None
     def __str__(self):
         '''overload string for print'''
         return "Name: " + self.name + "\nPosition: " + str(self.x) + ", " + str(self.y)
@@ -60,6 +63,7 @@ def find_g(node, neighbor):
         gcost = 10
     else:
         gcost = 14
+    neighbor.g = gcost
     return gcost
 
 def find_h(node, destination):
@@ -76,6 +80,20 @@ def find_h(node, destination):
 def astar(graph, start, goal):
     path = []
     current = start
+    _start = start
+    openlist = []
+    closedlist = []
+    openlist.append(_start)
+    while open:
+        current = openlist[0]
+        closedlist.append(current)
+        openlist.remove(current)
+        for neighbor in current.neighbors:
+            if neighbor in openlist:
+                openlist.append(neighbor)
+            if tentative >= neighbor.g:
+                continue
+            
 
 
 def main():
