@@ -16,12 +16,10 @@ class Node(object):
 def retrace(start, goal):
     '''retrace the path'''
     path = []
-    current = start
-    while current != goal:
+    current = goal
+    while current.parent is not None:
         path.append(current)
         current = current.parent
-        if current == goal:
-            path.append(goal)
     return path
 
 def printpath(path):
@@ -72,7 +70,7 @@ def astar(graph, start, goal):
     openlist = []
     closedlist = []
     openlist.append(current)
-    while  goal in closedlist:
+    while  goal not in closedlist:
         closedlist.append(current)
         openlist.remove(current)
         tester = get_neighbors(current, graph)
@@ -88,11 +86,16 @@ def astar(graph, start, goal):
                 else:
                     neighbor.g = tentative_g + current.g
                     neighbor.parent = current
+            if neighbor in closedlist:
+                continue
             neighbor.h = find_h(neighbor, goal)
             neighbor.f = neighbor.g + neighbor.h
-        openlist.sort(key = lambda node: node.f)
+        openlist.sort(key=lambda node: node.f)
         current = openlist[0]
-        path = retrace(start, goal)
+        if current == goal:
+            path = retrace(start, goal)
+
+        
     return path
 
 
@@ -106,7 +109,7 @@ def main():
             node = Node(name, x, y)
             graph.append(node)
             index += 1
-    test = astar(graph, graph[4], graph[25])
+    test = astar(graph, graph[4], graph[25])    
 
 if __name__ == '__main__':
 
