@@ -13,15 +13,15 @@ class Node(object):
         return "Name: " + self.name + "\nPosition: " + str(self.x) + ", " + str(self.y)
 
 
-def retrace(start, destination):
+def retrace(start, goal):
     '''retrace the path'''
     path = []
     current = start
-    while current != destination:
+    while current != goal:
         path.append(current)
         current = current.parent
-        if current == destination:
-            path.append(destination)
+        if current == goal:
+            path.append(goal)
     return path
 
 def printpath(path):
@@ -56,26 +56,15 @@ def get_neighbors(current, nodes):
     return neighbors
 
 def find_g(node, neighbor):
-    xdifference = neighbor.x - node.x
-    ydifference = neighbor.y - node.y
-    totaldifference = xdifference + ydifference
-    if totaldifference == 1 or totaldifference == -1:
+    gcost = 0
+    if neighbor.x == node.x or neighbor.y == node.y:
         gcost = 10
     else:
         gcost = 14
-    neighbor.g = gcost
     return gcost
 
 def find_h(node, goal):
-    xleft = goal.x - node.x
-    if xleft < 1:
-        xleft = xleft * -1
-    yleft = goal.y - node.y
-    if yleft < 1:
-        yleft = yleft * -1
-    totalleft = xleft + yleft
-    hcost = totalleft * 10
-    return hcost
+    return 10 * (abs(node.x - goal.x) + abs(node.y - goal.y))
 
 def astar(graph, start, goal):
     path = []
@@ -83,20 +72,27 @@ def astar(graph, start, goal):
     openlist = []
     closedlist = []
     openlist.append(current)
-    while open:
-        current = openlist[0]
+    while  goal in closedlist:
         closedlist.append(current)
         openlist.remove(current)
-        get_neighbors(current, graph)
-        for neighbor in get_neighbors(current, graph):
+        tester = get_neighbors(current, graph)
+        for neighbor in tester:
             tentative_g = current.g + find_g(current, neighbor)
             if neighbor not in openlist:
+                neighbor.g = find_g(current, neighbor) + current.g
+                neighbor.parent = current
                 openlist.append(neighbor)
-            if tentative_g >= neighbor.g:
-                continue
-            neighbor.g = find_g(current, neighbor) + current.g
+            else:
+                if tentative_g >= neighbor.g:
+                    continue
+                else:
+                    neighbor.g = tentative_g + current.g
+                    neighbor.parent = current
             neighbor.h = find_h(neighbor, goal)
             neighbor.f = neighbor.g + neighbor.h
+        openlist.sort(key = lambda node: node.f)
+        current = openlist[0]
+        path = retrace(start, goal)
     return path
 
 
