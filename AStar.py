@@ -5,9 +5,9 @@ class Node(object):
         self.x = x
         self.y = y
         self.parent = None
-        self.g = None
-        self.h = None
-        self.f = None
+        self.g = 0
+        self.h = 0
+        self.f = 0
     def __str__(self):
         '''overload string for print'''
         return "Name: " + self.name + "\nPosition: " + str(self.x) + ", " + str(self.y)
@@ -80,24 +80,23 @@ def find_h(node, goal):
 def astar(graph, start, goal):
     path = []
     current = start
-    _start = start
     openlist = []
     closedlist = []
-    openlist.append(_start)
+    openlist.append(current)
     while open:
         current = openlist[0]
         closedlist.append(current)
         openlist.remove(current)
         get_neighbors(current, graph)
-        for neighbor in current.neighbors:
+        for neighbor in get_neighbors(current, graph):
             tentative_g = current.g + find_g(current, neighbor)
             if neighbor not in openlist:
-                openlist.append(neighbor) 
+                openlist.append(neighbor)
             if tentative_g >= neighbor.g:
                 continue
-        neighbor.g = find_g(current, neighbor) + current.g
-        neighbor.h = find_h(neighbor, goal)
-        neighbor.f = neighbor.g + neighbor.h
+            neighbor.g = find_g(current, neighbor) + current.g
+            neighbor.h = find_h(neighbor, goal)
+            neighbor.f = neighbor.g + neighbor.h
     return path
 
 
@@ -111,7 +110,7 @@ def main():
             node = Node(name, x, y)
             graph.append(node)
             index += 1
-
+    test = astar(graph, graph[4], graph[25])
 
 if __name__ == '__main__':
 
