@@ -66,11 +66,11 @@ def find_g(node, neighbor):
     neighbor.g = gcost
     return gcost
 
-def find_h(node, destination):
-    xleft = destination.x - node.x
+def find_h(node, goal):
+    xleft = goal.x - node.x
     if xleft < 1:
         xleft = xleft * -1
-    yleft = destination.y - node.y
+    yleft = goal.y - node.y
     if yleft < 1:
         yleft = yleft * -1
     totalleft = xleft + yleft
@@ -90,15 +90,15 @@ def astar(graph, start, goal):
         openlist.remove(current)
         get_neighbors(current, graph)
         for neighbor in current.neighbors:
-            neighbor.g = find_g(current, neighbor) + current.g
-            neighbor.h = find_h(neighbor, goal)
-            neighbor.f = neighbor.g + neighbor.h 
+            tentative_g = current.g + find_g(current, neighbor)
             if neighbor not in openlist:
-                openlist.append(neighbor)
-                
-            else if tentative >= neighbor.g:
+                openlist.append(neighbor) 
+            if tentative_g >= neighbor.g:
                 continue
-            
+        neighbor.g = find_g(current, neighbor) + current.g
+        neighbor.h = find_h(neighbor, goal)
+        neighbor.f = neighbor.g + neighbor.h
+    return path
 
 
 def main():
@@ -111,23 +111,7 @@ def main():
             node = Node(name, x, y)
             graph.append(node)
             index += 1
-    openlist = []
-    closedlist = []
-    start = graph[0]
-    goal = graph[50]
-    openlist.append(start)
-    while openlist:
-        current = openlist[0]
-        print current
-        openlist.remove(current)
-        closedlist.append(current)
-        neighbors = get_neighbors(current, graph)
-        if goal in openlist:
-            print 'win'
-            break
-        for neighbor in neighbors:
-            if neighbor not in openlist:
-                openlist.append(neighbor)
+
 
 if __name__ == '__main__':
 
