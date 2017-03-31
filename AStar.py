@@ -88,10 +88,15 @@ def astar(graph, start, goal):
         current = openlist[0]
         closedlist.append(current)
         openlist.remove(current)
+        get_neighbors(current, graph)
         for neighbor in current.neighbors:
-            if neighbor in openlist:
+            neighbor.g = find_g(current, neighbor) + current.g
+            neighbor.h = find_h(neighbor, goal)
+            neighbor.f = neighbor.g + neighbor.h 
+            if neighbor not in openlist:
                 openlist.append(neighbor)
-            if tentative >= neighbor.g:
+                
+            else if tentative >= neighbor.g:
                 continue
             
 
