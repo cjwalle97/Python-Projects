@@ -78,6 +78,8 @@ def astar(graph, start, goal):
         tester = get_neighbors(current, graph)
         for neighbor in tester:
             tentative_g = current.g + find_g(current, neighbor)
+            if neighbor in closedlist:
+                continue
             if neighbor not in openlist:
                 neighbor.g = find_g(current, neighbor) + current.g
                 neighbor.parent = current
@@ -88,8 +90,6 @@ def astar(graph, start, goal):
                 else:
                     neighbor.g = tentative_g + current.g
                     neighbor.parent = current
-            if neighbor in closedlist:
-                continue
             neighbor.h = find_h(neighbor, goal)
             neighbor.f = neighbor.g + neighbor.h
         openlist.sort(key=lambda node: node.f)
