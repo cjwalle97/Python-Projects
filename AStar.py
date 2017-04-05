@@ -17,9 +17,11 @@ def retrace(start, goal):
     '''retrace the path'''
     path = []
     current = goal
-    path.append(current)
-    while current.parent is not start:
+    while current.parent is not None:
+        path.append(current)
         current = current.parent
+    if current.parent is None:
+        path.append(current)
     return path
 
 def printpath(path):
@@ -70,8 +72,8 @@ def astar(graph, start, goal):
     openlist = []
     closedlist = []
     openlist.append(current)
+    closedlist.append(current)
     while  goal not in closedlist:
-        closedlist.append(current)
         openlist.remove(current)
         tester = get_neighbors(current, graph)
         for neighbor in tester:
