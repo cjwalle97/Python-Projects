@@ -17,7 +17,7 @@ def retrace(start, goal):
     '''retrace the path'''
     path = []
     current = goal
-    while current.parent is not None:
+    if current.parent is not None:
         path.append(current)
         current = current.parent
     return path
@@ -94,8 +94,6 @@ def astar(graph, start, goal):
         current = openlist[0]
         if current == goal:
             path = retrace(start, goal)
-
-        
     return path
 
 
