@@ -17,8 +17,8 @@ def retrace(start, goal):
     '''retrace the path'''
     path = []
     current = goal
-    if current.parent is not None:
-        path.append(current)
+    path.append(current)
+    while current.parent is not start:
         current = current.parent
     return path
 
@@ -107,7 +107,8 @@ def main():
             node = Node(name, x, y)
             graph.append(node)
             index += 1
-    test = astar(graph, graph[4], graph[25])    
+    test = astar(graph, graph[4], graph[25]) 
+    printpath(test)   
 
 if __name__ == '__main__':
 
