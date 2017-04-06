@@ -45,6 +45,7 @@ def costtomove(start, goal):
     return 14
 
 
+
 def getneighbors(node, nodes):
     '''asdf'''
     current = node
@@ -66,6 +67,7 @@ def getneighbors(node, nodes):
     return neighbors
 
 
+
 def retrace(goal):
     '''retrace'''
     current = goal
@@ -76,7 +78,7 @@ def retrace(goal):
     return path
 
 
-def astar(graph, start, goal):
+def astar(start, goal, graph):
     path = []
     current = start
     openlist = []
@@ -89,7 +91,7 @@ def astar(graph, start, goal):
         for neighbor in tester:
             tentative_g = current.g + costtomove(current, neighbor)
             if neighbor in closedlist:
-                    continue
+                continue
             if neighbor not in openlist:
                 neighbor.g = costtomove(current, neighbor) + current.g
                 neighbor.parent = current
@@ -101,6 +103,7 @@ def astar(graph, start, goal):
                     neighbor.g = tentative_g + current.g
                     neighbor.parent = current
             neighbor.h = manhattan(neighbor, goal)
+            neighbor.f = neighbor.g + neighbor.h
         openlist.sort(key=lambda node: node.f)
         current = openlist[0]
         if current == goal:

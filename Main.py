@@ -1,6 +1,6 @@
-import pathfinding
+from pathfinding import astar
 from pathfinding import testfunc
-from pathfinding import getneighbors
+from pathfinding import GRAPH
 
 #to test your astar it must follow these conventions
 #preconditions: node objects must have g f h and parent variables
@@ -16,7 +16,7 @@ def main():
     failcount = 0
     passcount = 0
     for _ in range(100):
-        res = testfunc()
+        res = testfunc(astar(GRAPH, GRAPH[4], GRAPH[25]))
         if res:
             passcount += 1
         else:
