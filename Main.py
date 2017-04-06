@@ -16,7 +16,7 @@ def main():
     failcount = 0
     passcount = 0
     for _ in range(100):
-        res = testfunc(astar(GRAPH, GRAPH[4], GRAPH[25]))
+        res = testfunc(astar(GRAPH[4], GRAPH[25], GRAPH))
         if res:
             passcount += 1
         else:

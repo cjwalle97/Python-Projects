@@ -84,6 +84,7 @@ def astar(start, goal, graph):
     openlist = []
     closedlist = []
     openlist.append(current)
+    openlist.sort(key=lambda node: node.f)
     while  goal not in closedlist:
         closedlist.append(current)
         openlist.remove(current)
@@ -104,10 +105,15 @@ def astar(start, goal, graph):
                     neighbor.parent = current
             neighbor.h = manhattan(neighbor, goal)
             neighbor.f = neighbor.g + neighbor.h
-        openlist.sort(key=lambda node: node.f)
+
         current = openlist[0]
         if current == goal:
             path = retrace(goal)
+            for i in openlist:
+                i.parent = None
+            for i in closedlist:
+                i.parent = None
+            return path
     return path
 
 def testfunc(astarfunc):
@@ -121,7 +127,7 @@ def testfunc(astarfunc):
     for i in unwalkable:
         copygraph[i].walkable = False
 
-    result = astarfunc(start, goal, copygraph)
+    result = astar(start, goal, copygraph)
 
     expectedres = []
     for i in expected:
