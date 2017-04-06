@@ -23,6 +23,5 @@ def main():
             failcount += 1
     print str.format('fails {0}, passes {1}', failcount, passcount)
     
-
 if __name__ == '__main__':
     main()
