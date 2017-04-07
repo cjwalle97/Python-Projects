@@ -1,6 +1,6 @@
 from vector import vector
 
-class Agent(object):
+class agent(object):
     def __init__(self, position):  
         self.position = position
         self.direction = None
@@ -8,5 +8,4 @@ class Agent(object):
         self.velocity = [0, 1]
         self.force = None
 
-def seek(location):
-    
+def seek(location, agent):
