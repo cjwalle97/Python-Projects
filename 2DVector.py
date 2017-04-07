@@ -26,18 +26,18 @@ class vector(object):
         result = vector((self.xaxis / other.xaxis), (self.yaxis / other.yaxis))
         return result
 
-    def magnitude(self):
-        total = (self.xaxis * self.yaxis)
-        result = math.sqrt(total)
-        return result
-
-    def normalize(self):
-        result = vector((self.xaxis / self.magnitude), (self.yaxis / self.magnitude))
-        return result
-
     def dot_product(self, other):
         result = (self.xaxis * other.xaxis) + (self.yaxis * other.yaxis)
         return result
+
+def magnitude(vector):
+    total = (vector.xaxis * vector.yaxis)
+    result = math.sqrt(total)
+    return result
+
+def normalize(vector1):
+    result = vector((vector1.xaxis / magnitude(vector1)), (vector1.yaxis / magnitude(vector1)))
+    return result
 
 def main():
     a = vector(5,5)
@@ -51,9 +51,9 @@ def main():
 
     f = a / b
 
-    g = a.magnitude
+    g = magnitude(a)
 
-    h = a.normalize
+    h = normalize(a)
 
     i = a.dot_product(b)
 
