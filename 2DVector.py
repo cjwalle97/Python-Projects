@@ -17,6 +17,12 @@ def multiply(vector1, scalar):
     result = vector((vector1.xaxis * scalar), (vector1.yaxis * scalar))
     return result
 
-def magnitude(vector1):
-    total = vector1.xaxis * vector1.yaxis
+def magnitude(vector):
+    total = vector.xaxis * vector.yaxis
     result = math.sqrt(total)
+    return result
+
+def normalize(vector):
+    result = ((vector.xaxis / vector.magnitude), (vector.yaxis / vector.magnitude))
+    return result
+
