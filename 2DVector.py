@@ -17,6 +17,10 @@ def multiply(vector1, scalar):
     result = vector((vector1.xaxis * scalar), (vector1.yaxis * scalar))
     return result
 
+def divide(vector1, vector2):
+    result = ((vector1.xaxis / vector2.xaxis), (vector1.yaxis / vector2.yaxis))
+    return result
+
 def magnitude(vector):
     total = vector.xaxis * vector.yaxis
     result = math.sqrt(total)
@@ -26,3 +30,6 @@ def normalize(vector):
     result = ((vector.xaxis / vector.magnitude), (vector.yaxis / vector.magnitude))
     return result
 
+def dot_product(vector1, vector2):
+    result = (vector1.xaxis * vector2.xaxis) + (vector1.yaxis * vector2.yaxis)
+    return result
