@@ -1,3 +1,5 @@
+import math
+
 class vector(object):
     def __init__(self, xaxis, yaxis):
         self.xaxis = xaxis
@@ -16,4 +18,5 @@ def multiply(vector1, scalar):
     return result
 
 def magnitude(vector1):
-    
+    total = vector1.xaxis * vector1.yaxis
+    result = math.sqrt(total)
