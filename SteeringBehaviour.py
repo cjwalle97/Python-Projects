@@ -17,9 +17,10 @@ class clock():
         self.deltatime = self.c.tick(30) / 1000.0
 
 def seek(agent, goal):
+    '''Moves the agent towards a designated Vector'''
     time = clock()
     maxvelocity = 1
-    v = normalize((goal - agent.position)) * maxvelocity
+    v = normalize(goal - agent.position) * maxvelocity
     force = v - agent.velocity
     agent.velocity += force * time.deltatime
     agent.position += agent.velocity * time.deltatime
@@ -27,6 +28,7 @@ def seek(agent, goal):
     return force
     
 def flee(agent, goal):
+    '''Moves the agent'''
     time = clock()
     maxvelocity = 1
     v = normalize((agent.velocity - goal)) * maxvelocity
@@ -36,13 +38,17 @@ def flee(agent, goal):
     agent.heading = normalize(agent.velocity)
     return force
 
-'''def wander()'''
+def wander():
+    
 
 def main():
     '''main'''
     a = agent(vector(3, 3))
-    b = seek(a, vector(4,4))
-    #c = flee(a, vector(-5,-5))
+    print a.position
+    test1 = seek(a, vector(4,4))
+    print test1
+    test2 = flee(a, vector(-5,-5))
+    print test2
     #d
 
 if __name__ == '__main__':
